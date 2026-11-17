@@ -1,0 +1,180 @@
+:root {
+  --rosa: #ffd1e3;
+  --lila: #e3d7ff;
+  --menta: #d3f4e5;
+  --durazno: #ffe4cf;
+  --cielo: #d4eaff;
+  --texto: #5a4a6e;
+  --texto-suave: #8d7fa3;
+  --acento: #c9a7f5;
+  --acento-fuerte: #b388ee;
+  --blanco: rgba(255, 255, 255, 0.78);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Nunito", system-ui, sans-serif;
+  color: var(--texto);
+  background: linear-gradient(160deg, var(--rosa) 0%, var(--lila) 35%, var(--cielo) 70%, var(--menta) 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+.pagina {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 2.5rem 1.2rem 4rem;
+}
+
+/* ---------- Dedicatoria ---------- */
+.dedicatoria { text-align: center; margin-bottom: 2rem; }
+
+.dedicatoria h1 {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-size: clamp(2.1rem, 8vw, 3.2rem);
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  color: var(--acento-fuerte);
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.8);
+  animation: aparecer 1.2s ease both;
+}
+
+.para { font-size: 1.3rem; font-weight: 700; margin: 0 0 0.6rem; }
+.mensaje { font-size: 1.1rem; line-height: 1.6; margin: 0 auto; max-width: 46ch; white-space: pre-line; }
+.firma { font-family: "Pacifico", cursive; font-size: 1.2rem; margin: 1rem 0 0; color: var(--acento-fuerte); }
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Canciones ---------- */
+.canciones { display: grid; gap: 1rem; margin-bottom: 2rem; }
+#listaSpotify, #listaLocal { display: grid; gap: 1rem; }
+#listaLocal:empty, #listaSpotify:empty { display: none; }
+
+.cancion {
+  background: var(--blanco);
+  border-radius: 24px;
+  padding: 0.8rem;
+  box-shadow: 0 8px 24px rgba(179, 136, 238, 0.2);
+  position: relative;
+}
+
+.cancion iframe { display: block; width: 100%; height: 152px; border: 0; border-radius: 16px; }
+
+.cancion.local { padding: 1rem 1.2rem; background: linear-gradient(135deg, var(--durazno), var(--rosa)); }
+.cancion.local .nombre { font-weight: 700; margin: 0 0 0.6rem; word-break: break-word; padding-right: 2rem; }
+.cancion.local audio { width: 100%; }
+
+.quitar {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--texto);
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+.cancion:not(.local) .quitar { top: -0.5rem; right: -0.3rem; }
+
+.vacio { text-align: center; color: var(--texto-suave); margin: 0; }
+
+/* ---------- Editor ---------- */
+.editor {
+  background: var(--blanco);
+  border-radius: 28px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(179, 136, 238, 0.22);
+}
+
+.editor h2 { font-family: "Pacifico", cursive; font-weight: 400; margin: 0 0 0.5rem; font-size: 1.5rem; }
+
+.editor label { display: block; font-weight: 700; margin: 1rem 0 0.35rem; }
+.editor hr { border: 0; border-top: 2px dashed var(--lila); margin: 1.4rem 0 0.4rem; }
+
+input[type="text"], textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 2px solid var(--lila);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--texto);
+  font: inherit;
+}
+
+input[type="file"] { width: 100%; font: inherit; }
+
+input:focus-visible, textarea:focus-visible, button:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.fila { display: flex; gap: 0.6rem; }
+.fila input { flex: 1; min-width: 0; }
+.fila.botones { margin-top: 1.4rem; flex-wrap: wrap; }
+
+button {
+  padding: 0.7rem 1.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--acento-fuerte);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+button:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(179, 136, 238, 0.4); }
+button.secundario { background: var(--cielo); color: var(--texto); }
+
+.contador { font-weight: 400; color: var(--texto-suave); margin-left: 0.4rem; }
+.ayuda { font-size: 0.85rem; color: var(--texto-suave); margin: 0.4rem 0 0; }
+.error { color: #c2527a; font-weight: 700; min-height: 1.2em; margin: 0.8rem 0 0; }
+
+.enlace { margin-top: 1rem; }
+
+.volver { position: fixed; bottom: 1rem; right: 1rem; z-index: 5; }
+
+/* ---------- Modo vista previa / regalo ---------- */
+body.vista #panelEditor { display: none; }
+
+/* ---------- Corazones flotando ---------- */
+.corazones { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+
+.corazon {
+  position: absolute;
+  bottom: -40px;
+  opacity: 0;
+  animation: subir linear infinite;
+}
+
+@keyframes subir {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+  15%  { opacity: 0.7; }
+  100% { transform: translateY(-110vh) rotate(25deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .corazon, .dedicatoria h1 { animation: none; }
+  .corazon { display: none; }
+  button:hover { transform: none; }
+}
+
+@media (max-width: 480px) {
+  .fila { flex-direction: column; }
+  .fila.botones button { width: 100%; }
+}
